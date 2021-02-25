@@ -16,7 +16,7 @@ const LoginPage = () => {
         <div className='login-form'>
           <h2 className='text-center'>Login</h2>
           <FormLogin state={state} setState={setState}/>
-          <GoogleButton>Sign in with Google</GoogleButton>
+          <GoogleButton >Sign in with Google</GoogleButton>
           <p className='no-account'>You do not have an account? <Link to='/sign-up'>Sign up</Link></p>
         </div>
       </div>

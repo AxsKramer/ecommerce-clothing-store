@@ -1,2 +1,2 @@
-# ecommerce-clothing-store
-ecommerce-clothing-store
+# Ecommerce Clothing Store
+

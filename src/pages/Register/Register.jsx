@@ -12,7 +12,7 @@ const RegisterPage = () => {
       <div className='register-section'>
         <div className='register-form'>
           <h2>Sign up</h2>
-          <FormRegister state={state} setState={setState} />
+          <FormRegister state={state} setState={setState} initialState={initialState}/>
         </div>
       </div>
     </section>

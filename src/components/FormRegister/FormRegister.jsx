@@ -1,12 +1,25 @@
 import React from "react";
 import FormInput from '../FormInput/FormInput';
 import CustomButton from '../CustomButton/CustomButton';
+import {auth, createUserProfileDocument} from '../../firebase';
 
-const FormRegister = ({state, setState}) => {
+const FormRegister = ({state, setState, initialState}) => {
 
-  const handleSubmit = (event) => {
+  const {email, name, password, confirmPassword} = state;
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    setState(initialState);
+    if(password !== confirmPassword){
+      return;
+    }
+
+    try {
+      const {user} = await auth.createUserWithEmailAndPassword(email, password);
+      await createUserProfileDocument(user, {displayName: name});
+      setState(initialState);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   const handleChange = (event) => setState({...state, [event.target.name]: event.target.value});
@@ -17,7 +30,7 @@ const FormRegister = ({state, setState}) => {
         name="name"
         type="name"
         handleChange={handleChange}
-        value={state.name}
+        value={name}
         label="name"
         required
       />
@@ -25,7 +38,7 @@ const FormRegister = ({state, setState}) => {
         name="email"
         type="email"
         handleChange={handleChange}
-        value={state.email}
+        value={email}
         label="email"
         required
       />
@@ -33,7 +46,7 @@ const FormRegister = ({state, setState}) => {
         name="password"
         type="password"
         handleChange={handleChange}
-        value={state.password}
+        value={password}
         label="password"
         required
       />
@@ -41,7 +54,7 @@ const FormRegister = ({state, setState}) => {
         name="confirmPassword"
         type="password"
         handleChange={handleChange}
-        value={state.password}
+        value={confirmPassword}
         label="confirm password"
         required
       />

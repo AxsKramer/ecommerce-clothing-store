@@ -1,22 +1,27 @@
 import React from 'react';
 import {NavLink, Link} from 'react-router-dom';
 import './Header.scss';
+import {auth} from '../../firebase';
 
-const Header = () => {
+const Header = ({user}) => {
   return (
     <header className='header'>
       <Link to='/' className='logo-container'>
         <i className="fab fa-wolf-pack-battalion logo"></i>
       </Link>
       <nav className='menu'>
-        <NavLink 
-          to='/home' 
-          className='menu_item' 
-          activeStyle={{
-            fontWeight: "bolder",
-            color: 'white',
-          }}
-        >HOME</NavLink>
+      {
+        user ? (
+          <NavLink 
+            to='/home' 
+            className='menu_item' 
+            activeStyle={{
+              fontWeight: "bolder",
+              color: 'white',
+            }}
+          >HOME</NavLink>
+        ): null
+      }
         <NavLink 
           to='/shop' 
           className='menu_item' 
@@ -33,17 +38,23 @@ const Header = () => {
             color: 'white',
           }}
         >CONTACT</NavLink>
-        <NavLink 
-          to='/login' 
-          className='menu_item' 
-          activeStyle={{
-            fontWeight: "bolder",
-            color: 'white',
-          }}
-        >LOGIN</NavLink>
-        <button className='logout' >
-          LOGOUT
-        </button>
+        {
+          user ? (
+            <button className='logout' onClick={() => auth.signOut()}>
+              LOG OUT
+            </button>
+            
+          ): (
+            <NavLink 
+              to='/login' 
+              className='menu_item' 
+              activeStyle={{
+                fontWeight: "bolder",
+                color: 'white',
+              }}
+            >LOG IN</NavLink>
+          )
+        }
       </nav>
     </header>
   )

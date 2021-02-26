@@ -4,17 +4,31 @@ import Layout from '../container/Layout';
 import Login from '../pages/Login/Login';
 import Register from '../pages/Register/Register';
 import Home from '../pages/Home';
-import {auth} from '../firebase';
+import {auth, createUserProfileDocument} from '../firebase';
 
 const App = () => {
 
-  const [isAuth, setAuth] = useState(null);
+  const [isAuth, setAuth] = useState({currentUser: null});
 
   let unsubscribeFromAuth = null;
 
   useEffect(() => {
-    unsubscribeFromAuth = auth.onAuthStateChanged(user => setAuth({currentUser: user}));
-    
+    unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+      if(userAuth){
+        const userRef = await createUserProfileDocument(userAuth);
+        userRef.onSnapshot(snapshot => {
+          setAuth({
+            currentUser: {
+              id: snapshot.id,
+              ...snapshot.data()
+            }
+          });
+          console.log(isAuth);
+        })
+      }
+      setAuth({currentUser: userAuth});
+      
+    });
     return () => unsubscribeFromAuth();
   },[]);
   
@@ -22,7 +36,7 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <Layout>
+      <Layout currentUser={isAuth.currentUser}>
         <Switch>
           <Route exact path='/' component={Home} />
           <Route exact path='/login' component={Login} />

@@ -1,25 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import {useDispatch, useSelector} from 'react-redux';
 import FormInput from '../FormInput/FormInput';
 import CustomButton from '../CustomButton/CustomButton';
-import {auth} from '../../firebase';
+import Message from '../Message/Message';
+import {loginNormal, cleanState} from '../../redux/actions/userActions';
 
 const FormLogin = ({state,setState, initialState}) => {
+
+  const [showError, setshowError] = useState(null);
+  const dispatch = useDispatch();
+  const user = useSelector(store => store.user);
+
+  useEffect(() => setshowError(user.error), [user.error]);
 
   const {email, password} = state;
   
   const handleSubmit = async (event) => {
     event.preventDefault();
-    try {
-      await auth.signInWithEmailAndPassword(email, password);
-    } catch (error) {
-      console.log(error.message);
-    }
-    setState(initialState);
+    dispatch(loginNormal(email, password));
   }
   const handleChange = (event) => setState({...state, [event.target.name]: event.target.value});
 
+  if(showError){
+    setTimeout(() => dispatch(cleanState()), 3000);
+  }
+
   return (
     <form onSubmit={handleSubmit}>
+      {showError ? <Message isError>{user.message}</Message> : null}
       <FormInput
         name="email"
         type="email"

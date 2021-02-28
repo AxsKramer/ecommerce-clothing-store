@@ -1,9 +1,20 @@
 import React from 'react';
-import {NavLink, Link} from 'react-router-dom';
+import {NavLink, Link, useHistory} from 'react-router-dom';
+import {useDispatch, useSelector} from 'react-redux';
+import {logoutUser} from '../../redux/actions/userActions';
 import './Header.scss';
-import {auth} from '../../firebase';
 
-const Header = ({user}) => {
+const Header = () => {
+
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const {user} = useSelector((store) => store.user);
+
+  const logout = () => {
+    dispatch(logoutUser());
+    history.push('/login');
+  }
+  
   return (
     <header className='header'>
       <Link to='/' className='logo-container'>
@@ -40,7 +51,7 @@ const Header = ({user}) => {
         >CONTACT</NavLink>
         {
           user ? (
-            <button className='logout' onClick={() => auth.signOut()}>
+            <button className='logout' onClick={logout}>
               LOG OUT
             </button>
             

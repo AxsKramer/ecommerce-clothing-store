@@ -3,7 +3,7 @@ import {BrowserRouter, Switch, Route, Redirect} from 'react-router-dom';
 import Layout from '../container/Layout';
 import LoginPage from '../pages/Login/Login';
 import RegisterPage from '../pages/Register/Register';
-import Home from '../pages/Home';
+import HomePage from '../pages/Home/Home';
 import {useSelector} from 'react-redux';
 
 import {auth, createUserProfileDocument} from '../firebase';
@@ -53,9 +53,10 @@ const App = () => {
     <BrowserRouter>
       <Layout >
         <Switch>
-          <PrivateRoute exact path='/home' component={Home} />
+          <PrivateRoute exact path='/home' component={HomePage} />
           <Route exact path='/login' component={LoginPage} />
           <Route exact path='/sign-up' component={RegisterPage} />
+          <Route exact path='/' component={HomePage} />
         </Switch>
       </Layout>
     </BrowserRouter>

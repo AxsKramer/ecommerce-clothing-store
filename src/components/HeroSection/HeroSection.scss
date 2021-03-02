@@ -3,50 +3,75 @@
 $font-title: "Reggae One", cursive;
 .hero {
   width: 100%;
-  height: 50vh;
+  height: calc(50vh - 70px);
   color: white;
+  max-height: fit-content;
+
+  @media screen and (min-width: 600px ) and (orientation: landscape) {
+    width: 100%;
+    height: calc(100vh - 70px);
+    display: flex;
+  }
 
   @media screen and (min-width: 766px) {
+    width: 100%;
+    height: calc(70vh - 70px);
     display: flex;
   }
 
   &-video {
     width: 100%;
-    height: 100%;
+    height: calc(50vh - 70px);
     position: relative;
     object-fit: cover;
 
+    @media screen and (min-width: 600px ) and (orientation: landscape) {
+      width: 50vw;
+      height: calc(100vh - 70px);
+      position: static;
+    }
+
     @media screen and (min-width: 766px) {
-      height: 100%;
-      width: 100%;
+      width: 50vw;
+      height: calc(70vh - 70px);
       position: static;
     }
   }
+
   &-intro {
     position: absolute;
     top: 70px;
     width: 100%;
-    height: inherit;
+    height: calc(50vh - 70px);
     text-align: center;
     background: rgba($color: #000000, $alpha: 0.8);
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
+    max-height: fit-content;
 
-    @media screen and (min-width: 766px) {
+    @media screen and (min-width: 600px ) and (orientation: landscape) {
       position: static;
-      height: 50vh;
+      height: calc(100vh - 70px);
       width: 50vw;
       background: rgba($color: #000000, $alpha: 1);
       padding: 0;
+      justify-content: space-evenly;
+      border-bottom: 1px solid black;
     }
 
-    .logo {
-      font-size: 5rem;
-      line-height: 70px;
-      color: white;
+    @media screen and (min-width: 766px){
+      position: static;
+      height: calc(70vh - 70px);
+      width: 50vw;
+      background: rgba($color: #000000, $alpha: 1);
+      padding: 0;
+      justify-content: space-evenly;
+      align-items: center;
     }
 
+    
     .hero-intro-details {
       letter-spacing: 0.2rem;
       display: flex;
@@ -54,7 +79,11 @@ $font-title: "Reggae One", cursive;
       justify-content: space-evenly;
       padding: 0 1rem;
       font-family: $font-title;
-
+      height: inherit;
+      
+      .logo {
+        font-size: 5rem;
+      }
       h1 {
         font-size: 1.8rem;
       }
@@ -67,13 +96,20 @@ $font-title: "Reggae One", cursive;
 
       button {
         width: 60%;
-        margin: 0 auto;
+        margin: 2rem auto 1rem auto;
+        padding: 0;
       }
 
-      @media screen and (min-width: 766px) {
+      @media screen and (min-width: 600px ) and (orientation: landscape), screen and (min-width: 766px) {
         padding: 0 2rem;
         button {
           width: 100%;
+          margin: 0;
+        }
+      }
+      @media screen and (min-width: 766px) {
+        span {
+          display: block;
         }
       }
     }

@@ -1,0 +1,24 @@
+.networks-section{
+  width: 100%;
+  text-align: center;
+  
+  .networks{
+    padding: 3rem 0;
+    display: flex;
+    justify-content: space-evenly;
+    
+    i{
+      font-size: 4rem;
+      color: #8e2de2;
+      
+      &:hover{
+        color: #4a00e0;
+      }
+    }
+  }
+
+  @media screen and (min-width: 766px) {
+    width: 80%;
+    margin: 0 auto;
+  }
+}

@@ -12,8 +12,8 @@ const HeroSection = () => {
         <source src={video} type="video/mp4" />
       </video>
       <div className="hero-intro">
-        <i className="fab fa-wolf-pack-battalion logo"></i>
         <div className="hero-intro-details">
+          <i className="fab fa-wolf-pack-battalion logo"></i>
           <h1>Wolves Army</h1>
           <h3>Clothes for the new age.</h3>
           <span>Dress up, make an impact and show who you are.</span>

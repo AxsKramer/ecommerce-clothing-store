@@ -6,7 +6,9 @@ const Layout = ({children}) => {
     <>
       {/* <Header user={currentUser}/> */}
       <Header />
-      {children}
+      <main>
+        {children}
+      </main>
     </>
   )
 }

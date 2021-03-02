@@ -26,6 +26,9 @@
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+    @media screen and (max-width: 600px) {
+      display: none;
+    }
     
     &_item{
       padding: 1rem;

@@ -13,11 +13,9 @@ const HomePage = () => {
           <h2>Free shipping.</h2>
           <p>On orders over $ 100 USD</p>
         </div>
-        <i class="fas fa-shipping-fast"></i>
+        <i className="fas fa-shipping-fast"></i>
       </section>
       <CategoriesSection />
-        
-
     </>
   )
 }

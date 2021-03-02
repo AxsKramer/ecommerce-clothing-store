@@ -8,13 +8,11 @@ const Categories = () => {
   const { categories } = useSelector((store) => store.categories);
 
   return (
-    <section>
+    <section className='categories-container'>
       <h2>Categories</h2>
       <div className="categories">
         {categories ? (
-          categories.map((category) => (
-            <Category key={category.id} category={category} />
-          ))
+          categories.map((category) => <Category key={category.id} category={category} />)
         ) : (
           <Spinner />
         )}

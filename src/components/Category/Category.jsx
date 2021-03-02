@@ -8,7 +8,7 @@ const Category = ({ category }) => {
 
   return (
     <div
-      className={`${size} menu-item`}
+      className={`${size} category`}
       onClick={() => history.push(`/${linkUrl}`)}
     >
       <div className="background-image" style={{ backgroundImage: `url(${imageUrl})` }} ></div>

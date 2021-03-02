@@ -1,0 +1,19 @@
+.footer{
+  width: 100vw;
+  padding: 0;
+  margin: 0;
+
+  .footer-final{
+    background: #333;
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+    font-size: 1.5rem;
+    font-weight: 500;
+
+    p{
+      padding: 0;
+      margin: 0;
+    }
+  }
+}

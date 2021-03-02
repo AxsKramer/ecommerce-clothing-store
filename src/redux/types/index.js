@@ -19,3 +19,7 @@ export const cartTypes = {
   CLEAR_ITEM_FROM_CART: 'CLEAR_ITEM_FROM_CART',
   CLEAR_CART: 'CLEAR_CART',
 }
+
+export const categoriesTypes = {
+
+}

@@ -4,6 +4,8 @@ import Layout from '../container/Layout';
 import LoginPage from '../pages/Login/Login';
 import RegisterPage from '../pages/Register/Register';
 import HomePage from '../pages/Home/Home';
+import ShopPage from '../pages/Shop/Shop';
+import ShopCategoryPage from '../pages/ShopCategory/ShopCategory';
 import {useSelector} from 'react-redux';
 
 import {auth, createUserProfileDocument} from '../firebase';
@@ -53,10 +55,12 @@ const App = () => {
     <BrowserRouter>
       <Layout >
         <Switch>
+          <Route exact path='/' component={HomePage} />
           <PrivateRoute exact path='/home' component={HomePage} />
           <Route exact path='/login' component={LoginPage} />
           <Route exact path='/sign-up' component={RegisterPage} />
-          <Route exact path='/' component={HomePage} />
+          <Route exact path='/shop' component={ShopPage} />
+          <Route exact path='/shop/:category' component={ShopCategoryPage} />
         </Switch>
       </Layout>
     </BrowserRouter>

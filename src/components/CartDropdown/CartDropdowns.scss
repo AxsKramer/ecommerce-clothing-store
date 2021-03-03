@@ -22,11 +22,31 @@
     flex-direction: column;
     overflow-y: scroll;
     overflow-x: hidden;
+    &::-webkit-scrollbar{
+      width: 7px;
+      background: rgba($color: #000000, $alpha: .2);
+    }
+    &::-webkit-scrollbar-thumb{
+      background: #4a00e0;
+      border-radius: 5px;
+
+    }
   }
 
-  button {
-    margin-top: auto;
+  .buttons{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    button {
+      width: 40%;
+      margin: 1rem 0;
+      font-size: 1rem;
+      display: inline;
+      padding: 0;
+    }
   }
+
+  
 }
 
 .no-items{

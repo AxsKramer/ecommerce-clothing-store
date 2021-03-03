@@ -1,7 +1,11 @@
 import React from 'react';
+import {useDispatch} from 'react-redux';
+import {addItem} from '../../redux/actions/cartActions';
 import './Collection.scss';
 
 const Collection = ({item}) => {
+
+  const dispatch = useDispatch();
 
   return (
     <div className='collection-item'>
@@ -16,7 +20,7 @@ const Collection = ({item}) => {
             <i className="fas fa-heart"></i>
             <span>55</span>
           </button>
-          <button title='Add to cart'>
+          <button title='Add to cart' onClick={() => dispatch(addItem(item))}>
             <i className="fas fa-cart-plus"></i>
           </button>
         </div>

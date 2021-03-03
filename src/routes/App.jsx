@@ -6,6 +6,7 @@ import RegisterPage from '../pages/Register/Register';
 import HomePage from '../pages/Home/Home';
 import ShopPage from '../pages/Shop/Shop';
 import ShopCategoryPage from '../pages/ShopCategory/ShopCategory';
+import CheckoutPage from '../pages/Checkout/Checkout';
 import {useSelector} from 'react-redux';
 
 import {auth, createUserProfileDocument} from '../firebase';
@@ -61,6 +62,8 @@ const App = () => {
           <Route exact path='/sign-up' component={RegisterPage} />
           <Route exact path='/shop' component={ShopPage} />
           <Route exact path='/shop/:category' component={ShopCategoryPage} />
+          <Route exact path='/checkout' component={CheckoutPage} />
+
         </Switch>
       </Layout>
     </BrowserRouter>

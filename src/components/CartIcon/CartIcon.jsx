@@ -1,18 +1,18 @@
 import React from 'react';
 import {useSelector, useDispatch } from 'react-redux';
 import ShoppingIcon from './ShoppingIcon';
+import {toggleCartDropdown} from '../../redux/actions/cartActions';
 import './CartIcon.scss';
-
 
 const CartIcon = () => {
 
   const dispatch = useDispatch();
-  const cart = useSelector(store => store.cart);
+  const {cartItems} = useSelector(store => store.cart);
 
   return (
-    <div className='cart-icon' >
+    <div className='cart-icon' onClick={() => dispatch(toggleCartDropdown())}>
       <ShoppingIcon />
-      <span className='item-count'>2</span>
+      <span className='item-count'>{cartItems.length}</span>
     </div>
   )
 }

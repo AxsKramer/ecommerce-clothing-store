@@ -20,6 +20,6 @@ export const cartTypes = {
   CLEAR_CART: 'CLEAR_CART',
 }
 
-export const categoriesTypes = {
-
+export const shopTypes = {
+  SHOW_CATEGORY_SELECTED: 'SHOW_CATEGORY_SELECTED'
 }

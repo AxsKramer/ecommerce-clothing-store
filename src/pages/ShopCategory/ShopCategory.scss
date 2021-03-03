@@ -1,0 +1,11 @@
+.shop-category{
+
+  width: 80%;
+  margin: 0 auto;
+
+  .items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+}

@@ -16,8 +16,6 @@ const CheckoutPage = () => {
         return accum + (currentValue.price * currentValue.quantity);
       },0); 
     }
-    // console.log(cartItems)
-    // console.log(total)
 
   return (
     <>
@@ -27,7 +25,7 @@ const CheckoutPage = () => {
             <div className="header-block">
               <span>Product</span>
             </div>
-            <div className="header-block">
+            <div className="header-block description">
               <span>Description</span>
             </div>
             <div className="header-block">

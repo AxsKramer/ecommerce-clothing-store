@@ -2,6 +2,7 @@
   width: 50px;
   height: 50px;
   position: relative;
+  margin: 0 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -10,7 +11,6 @@
   .shopping-icon {
     width: 24px;
     height: 24px;
-    color: white;
     background: white;
     border-radius: 50%;
     padding: .5rem;
@@ -21,6 +21,6 @@
     font-size: 1rem;
     font-weight: bold;
     bottom: 12px;
-    color: black
+    color: #004e92;
   }
 }

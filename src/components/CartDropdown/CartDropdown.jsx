@@ -29,7 +29,7 @@ const CartDropdown = () => {
           cart.cartItems.length !== 0 && (
             <div className='buttons'>
             <CustomButtom onClick={goToCheckout}>CHECK OUT</CustomButtom>
-            <CustomButtom style={{background: '#4a00e0'}} onClick={() => dispatch(cleanCart())}>CLEAN CART</CustomButtom>
+            <CustomButtom style={{background: '#000428'}} onClick={() => dispatch(cleanCart())}>CLEAN CART</CustomButtom>
             </div>
           )
         }

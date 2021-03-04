@@ -34,6 +34,9 @@
     right: 0;
     z-index: 2;
     background: rgba($color: #000000, $alpha: 0.9);
+    @media screen and (max-width: 768px) {
+      display: flex;
+    }
 
     .details {
       width: 60%;
@@ -59,12 +62,16 @@
         border: none;
         outline: none;
         padding: 0;
+        transition: all .5s;
         i{
           font-size: 1.8rem;
         }
         &:hover{
-          color: #6dfd7e;
+          color: #004e92;
           cursor: pointer;
+        }
+        &:active{
+          transform: translateY(2px) scale(.9) ;
         }
       }
     }

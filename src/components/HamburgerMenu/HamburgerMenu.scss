@@ -1,0 +1,106 @@
+
+.hamburger-button{
+  background: none;
+  border: 1px solid white;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border-radius: 50%;
+  display: none;
+  text-align: center;
+  outline: none;
+
+  @media screen and (max-width: 600px) {
+    display: block;
+  }
+
+
+  span{
+    border-radius: 5px;
+    background: white;
+    display: block;
+    width: 60%;
+    margin: 5px auto;
+    height: 2px;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+  }
+
+  &.open{
+    .top-line {
+      animation-name: top-line-animation ;
+    }
+    .middle-line {
+      animation-name: middle-line-animation
+    }
+    .bottom-line {
+      animation-name: bottom-line-animation
+    }
+  }
+
+  .top-line {
+    animation-name: top-line-animation-close ;
+  }
+  .middle-line {
+    animation-name: middle-line-animation-close;
+  }
+  .bottom-line {
+    animation-name: bottom-line-animation-close;
+  }
+}
+
+@keyframes top-line-animation{
+  50%, 100% {
+    margin: 0 auto;
+    transform: translateY(2px) rotate(-45deg);
+  }
+}
+
+@keyframes bottom-line-animation{
+  50%, 100% {
+    margin: 0 auto;
+    transform: translateY(-2px) rotate(45deg);
+  }
+}
+@keyframes middle-line-animation{
+  20%, 100% {
+    margin: 0 auto;
+    width: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes top-line-animation-close{
+  0% {
+    margin: 0 auto;
+    transform: translateY(2px) rotate(-45deg);
+  }
+  50%, 100% {
+    margin: 5px auto;
+    transform: translateY(0px) rotate(0deg);
+  }
+}
+
+@keyframes bottom-line-animation-close{
+  0% {
+    margin: 0 auto;
+    transform: translateY(-2px) rotate(45deg);
+  }
+  50%, 100% {
+    margin: 5px auto;
+    transform: translateY(0px) rotate(0deg);
+  }
+}
+@keyframes middle-line-animation-close{
+  0% {
+    margin: 0 auto;
+    width: 0;
+    opacity: 0;
+  }
+  50%, 100% {
+    margin: 5px auto;
+    width: 60%;
+    opacity: 1;
+  }
+}

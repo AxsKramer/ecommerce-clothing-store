@@ -18,7 +18,7 @@ const Collection = ({item}) => {
         <div className='like-add'>
           <button title='Like'>
             <i className="fas fa-heart"></i>
-            <span>55</span>
+            <span>1</span>
           </button>
           <button title='Add to cart' onClick={() => dispatch(addItem(item))}>
             <i className="fas fa-cart-plus"></i>

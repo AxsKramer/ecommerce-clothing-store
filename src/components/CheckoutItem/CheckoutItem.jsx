@@ -11,7 +11,7 @@ const CheckoutItem = ({ cartItem}) => {
     <div className='image-container'>
       <img src={imageUrl} alt='item' />
     </div>
-    <span className='name'>{name}</span>
+    <span className='name description'>{name}</span>
     <span className='quantity'>
       <div className='arrow' onClick={() => dispatch(removeItem(cartItem))}>
         &#10094;

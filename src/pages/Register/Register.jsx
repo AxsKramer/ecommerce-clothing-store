@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import FormRegister from '../../components/FormRegister/FormRegister';
-import Message from '../../components/Message/Message';
 import {useSelector} from 'react-redux';
 import './Register.scss';
+import Spinner from '../../components/Spinner/Spinner';
 
 const RegisterPage = () => {
   const initialState = {name:'', email: '', password: '', confirmPassword: ''};
@@ -26,10 +26,10 @@ const RegisterPage = () => {
       <div className='register-section'>
         <div className='register-form'>
           <h2>Sign up</h2>
-          <FormRegister user={user} state={state} setState={setState} initialState={initialState} showMessage={showMessage} setshowMessage={setshowMessage}/>
+          <FormRegister user={user} state={state} setState={setState} showMessage={showMessage} setshowMessage={setshowMessage}/>
         </div>
         {
-          (!user.error && user.message.length) ? <Message>{user.message} </Message> : null
+          user.isLoading && <Spinner />
         }
       </div>
     </section>

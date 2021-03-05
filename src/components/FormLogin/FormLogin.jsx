@@ -5,7 +5,7 @@ import CustomButton from '../CustomButton/CustomButton';
 import Message from '../Message/Message';
 import {loginNormal, cleanState} from '../../redux/actions/userActions';
 
-const FormLogin = ({state,setState, initialState}) => {
+const FormLogin = ({state,setState}) => {
 
   const [showError, setshowError] = useState(null);
   const dispatch = useDispatch();

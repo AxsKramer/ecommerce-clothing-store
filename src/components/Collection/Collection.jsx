@@ -1,11 +1,12 @@
 import React from 'react';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {addItem} from '../../redux/actions/cartActions';
 import './Collection.scss';
 
 const Collection = ({item}) => {
 
   const dispatch = useDispatch();
+  const {user} = useSelector(store => store.user);
 
   return (
     <div className='collection-item'>
@@ -20,9 +21,13 @@ const Collection = ({item}) => {
             <i className="fas fa-heart"></i>
             <span>1</span>
           </button>
-          <button title='Add to cart' onClick={() => dispatch(addItem(item))}>
-            <i className="fas fa-cart-plus"></i>
-          </button>
+          {
+            user ? (
+            <button title='Add to cart' onClick={() => dispatch(addItem(item))}>
+              <i className="fas fa-cart-plus"></i>
+            </button>
+            ): null
+          }
         </div>
 
       </div>

@@ -1,13 +1,15 @@
 import React from "react";
+import {useHistory} from 'react-router-dom';
 import {useDispatch} from 'react-redux';
 import FormInput from '../FormInput/FormInput';
 import CustomButton from '../CustomButton/CustomButton';
 import Message from '../Message/Message';
-import {registerUser} from '../../redux/actions/userActions';
+import {registerUser, logoutUser} from '../../redux/actions/userActions';
 
-const FormRegister = ({state, setState, initialState, showMessage, user, setshowMessage}) => {
+const FormRegister = ({state, setState, showMessage, setshowMessage}) => {
 
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const {email, name, password, confirmPassword} = state;
 
@@ -19,7 +21,10 @@ const FormRegister = ({state, setState, initialState, showMessage, user, setshow
       return;
     }
     dispatch(registerUser(email, password, name));
-    setTimeout(() => setState(initialState), 3000);
+    setTimeout(() => {
+      dispatch(logoutUser());
+      setTimeout(() => history.push('/login'), 1000)
+    }, 3000); 
   }
 
   const handleChange = (event) => setState({...state, [event.target.name]: event.target.value});

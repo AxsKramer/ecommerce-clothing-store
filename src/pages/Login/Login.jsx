@@ -18,7 +18,7 @@ const LoginPage = () => {
 
   useEffect(() => {
     if (user.user) {
-      history.push('/home');
+      history.push('/');
     }else{
       setState(initialState);
     }
@@ -33,7 +33,6 @@ const LoginPage = () => {
           <FormLogin
             state={state}
             setState={setState}
-            initialState={initialState}
           />
           <GoogleButton>Sign in with Google</GoogleButton>
           <p className="no-account">

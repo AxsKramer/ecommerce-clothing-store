@@ -24,17 +24,12 @@ const userReducer = (state = initialState, action) => {
         isLoading: false,
         error: false
       };
-    case userTypes.USER_REGISTER_SUCCESS:
-      return {
-        ...state,
-        error: false,
-        message: action.payload
-      };
     case userTypes.USER_REGISTER_FAIL:
       return {
         ...state,
         error: true,
-        message: action.payload
+        message: action.payload,
+        isLoading: false
       };
     case userTypes.CLEAN_STATE:
       return {...initialState};

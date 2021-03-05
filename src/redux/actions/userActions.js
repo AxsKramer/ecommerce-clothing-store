@@ -1,8 +1,17 @@
 import {userTypes, appTypes} from '../types';
-import {auth, firestore, provider, createUserProfileDocument } from '../../firebase';
+import {auth, firestore, provider, createUserProfileDocument, storage } from '../../firebase';
 
+export const userConnect = (userConnection) => (dispatch) => {
+  dispatch({
+    type: userTypes.USER_LOGIN_SUCCESS,
+    payload: userConnection
+  });
+}
+ 
 export const  registerUser = (email, password, name) => async (dispatch) => {
   
+  dispatch({type: appTypes.LOADING})
+
   try {
     const userDB = firestore.collection('users').doc(email).get();
     if(userDB.exists){
@@ -10,7 +19,6 @@ export const  registerUser = (email, password, name) => async (dispatch) => {
     }else{
       const {user} = await auth.createUserWithEmailAndPassword(email, password);
       await createUserProfileDocument(user, {displayName: name});
-      dispatch({type: userTypes.USER_REGISTER_SUCCESS, payload: `HI ${name} Time to login `})
     }
   } catch (error) {
     dispatch({type: userTypes.USER_REGISTER_FAIL, payload: error.message});    
@@ -32,10 +40,6 @@ export const loginNormal = (email, password) => async (dispatch) => {
       const userDB = await firestore.collection('users').doc(user.email).get();
 
     if(userDB.exists){
-      dispatch({
-        type: userTypes.USER_LOGIN_SUCCESS,
-        payload: userDB.data()
-      });
       localStorage.setItem('user', JSON.stringify(userDB.data()));
     }else{
       dispatch({type: userTypes.USER_LOGIN_FAIL, payload: 'Wrong Email or Password'});
@@ -62,11 +66,6 @@ export const loginUserByGoogle = () => async (dispatch) => {
     const userDB = await firestore.collection('users').doc(user.email).get();
 
     if(userDB.exists){
-      dispatch({
-        type: userTypes.USER_LOGIN_SUCCESS,
-        payload: userDB.data()
-      });
-
       localStorage.setItem('user', JSON.stringify(userDB.data()));
     
     }else{
@@ -88,8 +87,39 @@ export const loginUserByGoogle = () => async (dispatch) => {
   }
 }
 
+export const changeImageProfile = (user, newImage) => async(dispatch) => {
+  dispatch({type: appTypes.LOADING});
+  try {
+    const imageRef = await storage.ref().child(user.email).child('photoURL');
+    await imageRef.put(newImage);
+    const imageURL = await imageRef.getDownloadURL();
+
+    await firestore.collection('users').doc(user.email).update({
+      photoURL: imageURL
+    })
+
+    const userNew = {
+      ...user,
+      photoURL: imageURL
+    }
+
+    localStorage.setItem('user', JSON.stringify(userNew));
+    
+
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 export const logoutUser = () => (dispatch) => {
   auth.signOut();
+  dispatch({type: userTypes.USER_LOGOUT});
+  localStorage.removeItem('user');
+}
+
+export const deleteUser = (email) => async (dispatch) => {
+  await auth.signOut();
+  await firestore.collection('users').doc(email).delete();
   dispatch({type: userTypes.USER_LOGOUT});
   localStorage.removeItem('user');
 }

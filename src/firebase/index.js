@@ -1,6 +1,7 @@
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
+import 'firebase/storage'
 
 const firebaseConfig = {
   apiKey: "AIzaSyChXuUJJ8Hw2eeMApvtHpntpd2S39iPbiM",
@@ -21,11 +22,11 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
   const snapshot = await userRef.get();
 
   if(!snapshot.exists){
-    const {displayName, email, uid} = userAuth;
+    const {displayName, email, uid, photoURL} = userAuth;
     const createdAt = new Date();
 
     try {
-      await userRef.set({displayName, email, createdAt, uid, ...additionalData});
+      await userRef.set({displayName, email, createdAt, photoURL, uid, ...additionalData});
     } catch (error) {
       console.log('Error creating user', error.message);
     }
@@ -35,10 +36,9 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
 
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
+export const storage = firebase.storage();
 export const provider = new firebase.auth.GoogleAuthProvider();
 provider.setCustomParameters({prompt: 'select_account'});
-export const signInWithGoogle = () => auth.signInWithPopup(provider);
-
-
+// export const signInWithGoogle = () => auth.signInWithPopup(provider);
 
 export default firebase;

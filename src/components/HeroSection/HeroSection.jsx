@@ -8,7 +8,7 @@ const HeroSection = () => {
   const history = useHistory();
   return (
     <section className="hero">
-      <video muted autoPlay loop className="hero-video">
+      <video muted autoPlay loop className="hero-video" >
         <source src={video} type="video/mp4" />
       </video>
       <div className="hero-intro">
@@ -17,8 +17,8 @@ const HeroSection = () => {
           <h1>Wolves Army</h1>
           <h3>Clothes for the new age.</h3>
           <span>Dress up, make an impact and show who you are.</span>
-          <CustomButton onClick={() => history.push("/categories")}>
-            CATEGORIES
+          <CustomButton onClick={() => history.push("/shop")}>
+            SEE COLLECTION
           </CustomButton>
         </div>
       </div>

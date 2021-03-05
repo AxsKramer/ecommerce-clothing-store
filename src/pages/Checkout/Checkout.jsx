@@ -11,10 +11,7 @@ const CheckoutPage = () => {
   let total = 0;
 
     if(cartItems.length){
-      total = cartItems.reduce((accum, currentValue) => {
-        console.log(`${accum} + (${currentValue.price} * ${currentValue.quantity})`);
-        return accum + (currentValue.price * currentValue.quantity);
-      },0); 
+      total = cartItems.reduce((accum, currentValue) => accum + (currentValue.price * currentValue.quantity),0); 
     }
 
   return (

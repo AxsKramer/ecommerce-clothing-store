@@ -36,7 +36,7 @@ const Header = () => {
       <nav ref={menu} className="menu">
         {user ? (
           <NavLink
-            to="/home"
+            to={`/user/${user.displayName}`}
             className="menu_item"
             activeStyle={{
               fontWeight: "bolder",
@@ -44,9 +44,33 @@ const Header = () => {
             }}
             onClick={() => setClose(true)}
           >
-            HOME
+            {user !== null && user.displayName}
+
           </NavLink>
         ) : null}
+        <NavLink
+          to="/"
+          exact
+          className="menu_item"
+          activeStyle={{
+            fontWeight: "bolder",
+            color: "white",
+          }}
+          onClick={() => setClose(true)}
+        >
+          HOME
+        </NavLink>
+        <NavLink
+          to="/categories"
+          className="menu_item"
+          activeStyle={{
+            fontWeight: "bolder",
+            color: "white",
+          }}
+          onClick={() => setClose(true)}
+        >
+          CATEGORIES
+        </NavLink>
         <NavLink
           to="/shop"
           className="menu_item"
@@ -57,17 +81,6 @@ const Header = () => {
           onClick={() => setClose(true)}
         >
           SHOP
-        </NavLink>
-        <NavLink
-          to="/contact"
-          className="menu_item"
-          activeStyle={{
-            fontWeight: "bolder",
-            color: "white",
-          }}
-          onClick={() => setClose(true)}
-        >
-          CONTACT
         </NavLink>
         {user ? (
           <>

@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {BrowserRouter, Switch, Route, Redirect} from 'react-router-dom';
+import {useDispatch} from 'react-redux';
 import Layout from '../container/Layout';
 import LoginPage from '../pages/Login/Login';
 import RegisterPage from '../pages/Register/Register';
@@ -7,32 +8,39 @@ import HomePage from '../pages/Home/Home';
 import ShopPage from '../pages/Shop/Shop';
 import ShopCategoryPage from '../pages/ShopCategory/ShopCategory';
 import CheckoutPage from '../pages/Checkout/Checkout';
+import CategoriesPage from '../pages/Categories/Categories';
+import UserPage from '../pages/User/User';
+import {userConnect} from '../redux/actions/userActions';
 import {useSelector} from 'react-redux';
 
 import {auth, createUserProfileDocument} from '../firebase';
 
 const App = () => {
 
+  const dispatch = useDispatch();
   const {user: userStore} = useSelector(store => store.user);
 
-  const [isAuth, setAuth] = useState({currentUser: null});
-
   useEffect(() => {
+
+    if(localStorage.getItem('user')){
+      const user = JSON.parse(localStorage.getItem('user'))
+      dispatch(userConnect(user));
+    }
+    
     const unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
       if(userAuth){
         const userRef = await createUserProfileDocument(userAuth);
         userRef.onSnapshot(snapshot => {
-          setAuth({
-            currentUser: {
-              id: snapshot.id,
-              ...snapshot.data()
-            }
-          });
+          dispatch(userConnect({
+            id: snapshot.id,
+            ...snapshot.data()})
+          )
         })
       }
-      setAuth({currentUser: userAuth});
+      dispatch(userConnect(null));
     });
-    return unsubscribeFromAuth;
+
+    return () => unsubscribeFromAuth();
   },[]);
   
   const PrivateRoute = ({component, path, ...rest}) => {
@@ -57,13 +65,13 @@ const App = () => {
       <Layout >
         <Switch>
           <Route exact path='/' component={HomePage} />
-          <PrivateRoute exact path='/home' component={HomePage} />
           <Route exact path='/login' component={LoginPage} />
           <Route exact path='/sign-up' component={RegisterPage} />
           <Route exact path='/shop' component={ShopPage} />
           <Route exact path='/shop/:category' component={ShopCategoryPage} />
-          <Route exact path='/checkout' component={CheckoutPage} />
-
+          <Route exact path='/categories' component={CategoriesPage} />
+          <PrivateRoute exact path='/checkout' component={CheckoutPage} />
+          <PrivateRoute excat path='/user/:userName' component={UserPage} />
         </Switch>
       </Layout>
     </BrowserRouter>

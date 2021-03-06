@@ -1,18 +1,17 @@
 import {userTypes} from '../types';
-import {appTypes} from '../types';
 
 const initialState = {
   user: null,
-  error: false,
+  ok: false,
   isLoading: false,
-  message: ''
+  errorMessage: null
 }
 
 const userReducer = (state = initialState, action) => {
   
   switch(action.type){
 
-    case appTypes.LOADING:
+    case userTypes.USER_FETCHING:
       return {
         ...state,
         isLoading: true
@@ -20,22 +19,33 @@ const userReducer = (state = initialState, action) => {
     case userTypes.USER_LOGIN_SUCCESS:
       return {
         ...state,
-        user: action.payload,
         isLoading: false,
-        error: false
+        errorMessage: null,
+        user: action.payload,
       };
+    case userTypes.USER_LOGIN_FAILURE:
+      return {
+        ...state,
+        isLoading: false,
+        errorMessage: action.payload,
+      };
+    case userTypes.USER_REGISTER_SUCCESS:
+      return {...state, ok: true  };
     case userTypes.USER_REGISTER_FAIL:
       return {
         ...state,
-        error: true,
-        message: action.payload,
-        isLoading: false
+        isLoading: false,
+        ok: false,
+        errorMessage: action.payload,
       };
-    case userTypes.CLEAN_STATE:
-      return {...initialState};
-
     case userTypes.USER_LOGOUT:
       return {...initialState};
+      
+    case userTypes.UPLOAD_USER_IMAGE_FAIL:
+      return {
+        ...state,
+        errorMessage: action.payload
+      }
     default:
       return state;
   }

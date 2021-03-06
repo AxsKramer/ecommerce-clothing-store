@@ -1,37 +1,46 @@
-import React from "react";
+import React, { useEffect } from "react";
+import {useDispatch, useSelector} from 'react-redux';
 import {useHistory} from 'react-router-dom';
-import {useDispatch} from 'react-redux';
+
 import FormInput from '../FormInput/FormInput';
 import CustomButton from '../CustomButton/CustomButton';
 import Message from '../Message/Message';
-import {registerUser, logoutUser} from '../../redux/actions/userActions';
 
-const FormRegister = ({state, setState, showMessage, setshowMessage}) => {
+import {registerUser, registerFail, logOut} from '../../redux/actions/userActions';
+
+const FormRegister = ({state, setState}) => {
 
   const dispatch = useDispatch();
   const history = useHistory();
-
+  const user = useSelector(store => store.user)
   const {email, name, password, confirmPassword} = state;
+
+  useEffect(() => {
+    if(user.ok){
+      setState({name:'', email: '', password: '', confirmPassword: ''});
+      dispatch(logOut());
+      history.push('/login');
+    }
+  },[user.ok] );
 
   const handleSubmit =  (event) => {
     event.preventDefault();
-    setshowMessage({error: false, message: ''});
-    if(password !== confirmPassword){
-      setshowMessage({error: true, message: 'Password does not match'});
+
+    if(email.trim() === '' || password.trim() === '' || name.trim() === ''){
+      dispatch(registerFail('All fields are required'));
       return;
     }
-    dispatch(registerUser(email, password, name));
-    setTimeout(() => {
-      dispatch(logoutUser());
-      setTimeout(() => history.push('/login'), 1000)
-    }, 3000); 
+    else if(password !== confirmPassword){
+      dispatch(registerFail('Password does not match'));
+      return;
+    }
+    dispatch(registerUser(name, email, password));
   }
-
   const handleChange = (event) => setState({...state, [event.target.name]: event.target.value});
 
   return (
     <form onSubmit={handleSubmit}>
-      {showMessage.error ? <Message isError>{showMessage.message}</Message> : null}
+      {user.errorMessage ? <Message isError>{user.errorMessage}</Message> : null}
       <FormInput
         name="name"
         type="name"
@@ -64,7 +73,7 @@ const FormRegister = ({state, setState, showMessage, setshowMessage}) => {
         label="confirm password"
         required
       />
-      <CustomButton type="submit">Sign up</CustomButton>
+      <CustomButton type="submit">Create Account</CustomButton>
     </form>
   );
 };

@@ -1,30 +1,38 @@
-import { shopTypes, appTypes } from '../types';
+import { shopTypes } from '../types';
 
 const initialState = {
   collections: [],
   selected: '',
-  isLoading: false
+  isLoading: false,
+  messageError: null
 }
 
 const shopReducer = (state = initialState, action) => {
 
   switch(action.type){
-    case appTypes.LOADING:
+    case shopTypes.GET_COLLECTION_FETCHING:
       return {
         ...state,
         isLoading: true
       }
-    case shopTypes.SHOW_CATEGORIES_SELECTED:
+    case shopTypes.SHOW_COLLECTION_SELECTED:
     return {
       ...state,
       isLoading: false,
       selected: action.payload
     };
-    case shopTypes.GET_COLLECTIONS_FIREBASE:
+    case shopTypes.GET_COLLECTIONS_SUCCESS:
       return {
         ...state,
         isLoading: false,
+        messageError: null,
         collections: action.payload
+      }
+    case shopTypes.GET_COLLECTIONS_FAILURE:
+      return {
+        ...state,
+        isLoading: false,
+        messageError: action.payload
       }
     default:
       return state;

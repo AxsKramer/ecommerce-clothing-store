@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import GoogleButton from "../../components/GoogleButton/GoogleButton";
-import { Link } from "react-router-dom";
-import FormLogin from "../../components/FormLogin/FormLogin";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
+
+import GoogleButton from "../../components/GoogleButton/GoogleButton";
+import FormLogin from "../../components/FormLogin/FormLogin";
 import Spinner from '../../components/Spinner/Spinner';
 
 import "./Login.scss";
@@ -13,7 +14,6 @@ const LoginPage = () => {
   const history = useHistory();
   const initialState = { email: "", password: "" };
   const [state, setState] = useState(initialState);
-
   const user = useSelector((store) => store.user);
 
   useEffect(() => {

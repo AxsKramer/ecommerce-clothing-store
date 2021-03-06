@@ -1,12 +1,13 @@
 import React, {useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import { Link } from 'react-router-dom';
+
 import Collection from '../../components/Collection/Collection';
-import Footer from '../../components/Footer/Footer';
 import Spinner from '../../components/Spinner/Spinner';
-import './Shop.scss';
 
 import {getCollectionsFromFirebase} from '../../redux/actions/shopActions';
+
+import './Shop.scss';
 
 const Shop = () => {
 
@@ -16,21 +17,19 @@ const Shop = () => {
   useEffect(() => {
     if(collections.length === 0){
       dispatch(getCollectionsFromFirebase());
-      return
     }else{
       return
     }
   },[collections]);
 
   return (
-    <>
     <section className='shop'>
       {
         collections.length ? (
           collections.map(collection => (
             <div key={collection.title} className="collection">
               <h2>{collection.title.toUpperCase()}</h2>
-              <Link to={`/shop/${collection.title}`}>See only {collection.title}</Link>
+              <Link to={`/shop/${collection.title.toLowerCase()}`}>See only {collection.title}</Link>
               <div className="items">
                 {collection.items.map((item, index) => <Collection key={index + item.id} item={item} />) }
               </div>
@@ -39,8 +38,6 @@ const Shop = () => {
         ) : <Spinner />
       }
     </section>
-    <Footer />
-    </>
   )
 }
 

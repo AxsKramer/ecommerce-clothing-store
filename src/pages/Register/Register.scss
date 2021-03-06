@@ -1,11 +1,9 @@
-
-
 .register-container{
-  height: calc(100vh - 70px);
+  height: calc(100vh - 118px);
   width: 100vw;
   overflow: hidden;
 
-  @media screen and (min-width: 1020px) {
+  @media screen and (min-width: 766px) {
     display: flex;
   }
 
@@ -18,7 +16,7 @@
     background-size: cover;
     position: relative;
 
-    @media screen and (min-width: 1020px) {
+    @media screen and (min-width: 766px) {
       position: static;
         width: 70%;
     }
@@ -26,23 +24,26 @@
 
   .register-section{
     position: absolute;
-    top: calc(32% - 70px);
-    left: 10%;
-    right: 10%;
+    top: 70px;
+    left: 0;
+    right: 0;
+    bottom: 48px;
     background: rgba($color: #ffffff, $alpha: 0.5);
     box-shadow: 1px 1px 8px  #333333, -1px -1px 8px #333333 ;
     padding: 1rem;
     border-radius: 10px;
     padding: 2rem 2rem 3rem 3rem;
     
-    @media screen and (min-width: 766px) {
-      top: calc(30% - 70px);
-      left: 20%;
-      right: 20%;
+    @media screen and (min-width: 425px) {
+      top: calc(20% - 70px);
+      left: 10%;
+      right: 10%;
+      bottom: 10%;
+
       padding: 2rem 6rem 4rem 6rem;
     }
 
-    @media screen and (min-width: 1020px) {
+    @media screen and (min-width: 766px) {
       position: static;
       width: 30%;
       border-radius: 0;

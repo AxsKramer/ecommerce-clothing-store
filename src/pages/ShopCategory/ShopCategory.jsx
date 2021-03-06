@@ -1,30 +1,28 @@
 import React from "react";
-import Collection from "../../components/Collection/Collection";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import Footer from '../../components/Footer/Footer';
-import "./ShopCategory.scss";
+
+import Collection from "../../components/Collection/Collection";
 import Spinner from "../../components/Spinner/Spinner";
+
+import "./ShopCategory.scss";
 
 const ShopCategory = () => {
   const { category } = useParams();
-  const collectionStore = useSelector((store) => store.shop);
-  const [item] = Object.entries(collectionStore).filter(collection => collection[0] === category);
+  const collections = useSelector((store) => store.shop.collections);
+  const collection = collections.find(collection => collection.routeName === category);
   
   return (
-    <>
-      <section className='shop-category'>
-        <h2>{item[0].toUpperCase()}</h2>
-        <div className="items">
-          {
-            item[1].items 
-              ? item[1].items.map(item => <Collection key={item.id} item={item} /> )
-              : <Spinner />
-          }
-        </div>
-      </section>
-      <Footer />
-    </>
+    <section className='shop-category'>
+      <h2>{collection.title.toUpperCase()}</h2>
+      <div className="items">
+        {
+          collection.items
+            ? collection.items.map(item => <Collection key={item.id} item={item} /> )
+            : <Spinner />
+        }
+      </div>
+    </section>
   )
 };
 

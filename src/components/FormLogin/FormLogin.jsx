@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import {useDispatch, useSelector} from 'react-redux';
+
 import FormInput from '../FormInput/FormInput';
 import CustomButton from '../CustomButton/CustomButton';
 import Message from '../Message/Message';
+
 import {loginNormal, cleanState} from '../../redux/actions/userActions';
 
 const FormLogin = ({state,setState}) => {
@@ -11,7 +13,7 @@ const FormLogin = ({state,setState}) => {
   const dispatch = useDispatch();
   const user = useSelector(store => store.user);
 
-  useEffect(() => setshowError(user.error), [user.error]);
+  useEffect(() => setshowError(user.errorMessage), [user.errorMessage]);
 
   const {email, password} = state;
   

@@ -1,7 +1,7 @@
 import {userTypes, appTypes} from '../types';
 import {auth, firestore, provider, createUserProfileDocument, storage } from '../../firebase';
 
-export const userConnect = (userConnection) => (dispatch) => {
+export const userConnected = (userConnection) => (dispatch) => {
   dispatch({
     type: userTypes.USER_LOGIN_SUCCESS,
     payload: userConnection

@@ -1,6 +1,7 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {BrowserRouter, Switch, Route, Redirect} from 'react-router-dom';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
+
 import Layout from '../container/Layout';
 import LoginPage from '../pages/Login/Login';
 import RegisterPage from '../pages/Register/Register';
@@ -10,34 +11,38 @@ import ShopCategoryPage from '../pages/ShopCategory/ShopCategory';
 import CheckoutPage from '../pages/Checkout/Checkout';
 import CategoriesPage from '../pages/Categories/Categories';
 import UserPage from '../pages/User/User';
-import {userConnect} from '../redux/actions/userActions';
-import {useSelector} from 'react-redux';
+import {userConnected} from '../redux/actions/userActions';
 
-import {auth, createUserProfileDocument} from '../firebase';
+import {auth, createUserProfileDocument, addCollectionAndDocuments} from '../firebase';
 
 const App = () => {
 
   const dispatch = useDispatch();
   const {user: userStore} = useSelector(store => store.user);
+  const shopStore = useSelector(store => store.shop);
+  const shop = Object.values(shopStore);
 
   useEffect(() => {
 
     if(localStorage.getItem('user')){
       const user = JSON.parse(localStorage.getItem('user'))
-      dispatch(userConnect(user));
+      dispatch(userConnected(user));
     }
     
     const unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
       if(userAuth){
         const userRef = await createUserProfileDocument(userAuth);
         userRef.onSnapshot(snapshot => {
-          dispatch(userConnect({
+          dispatch(userConnected({
             id: snapshot.id,
             ...snapshot.data()})
           )
         })
       }
-      dispatch(userConnect(null));
+      dispatch(userConnected(null));
+
+      //This only for save collections in firestore
+      // addCollectionAndDocuments("collections", shop.map(({title, items}) => ({title, items})));
     });
 
     return () => unsubscribeFromAuth();

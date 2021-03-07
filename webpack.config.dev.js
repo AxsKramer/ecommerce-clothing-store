@@ -1,10 +1,7 @@
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
-const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
-const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const path = require('path');
 
 module.exports = {
@@ -14,7 +11,8 @@ module.exports = {
     filename: 'js/[name].[contenthash].js',
     publicPath: '/'
   },
-  mode: 'production',
+  mode: 'development',
+  devtool: 'source-map',
   resolve: {
     extensions: ['.js', '.jsx'],
     // alias: {
@@ -55,7 +53,7 @@ module.exports = {
       {
         test: /\.(css|scss)$/,
         use: [
-          'style-loader',
+          MiniCssExtractPlugin.loader,
           'css-loader',
           'sass-loader'
         ]
@@ -65,6 +63,14 @@ module.exports = {
         type: "asset/resource"
       }
     ]
+  },
+  devServer: {
+    contentBase: path.join(__dirname, 'dist'),
+    compress: true,
+    port: 4000,
+    historyApiFallback: true,
+    open: true,
+    hot: true
   },
   plugins: [
     new HTMLWebpackPlugin({
@@ -84,13 +90,5 @@ module.exports = {
       ]
     }),
     new Dotenv(),
-    new CleanWebpackPlugin()
   ],
-  optimization: {
-    minimize: true,
-    minimizer: [
-      new CssMinimizerPlugin(),
-      new TerserPlugin(),
-    ]
-  }
 }

@@ -1,6 +1,6 @@
 import React, {lazy, Suspense} from 'react';
 import {Route} from 'react-router-dom';
-import Spinner from '../components/Spinner/Spinner';
+import Section from '../components/Section/Section';
 import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary';
 
 const LoginPage = lazy(() => import('../pages/Login/Login'));
@@ -17,7 +17,7 @@ const Routes = () => {
   
   return (
     <ErrorBoundary>
-      <Suspense fallback={<Spinner />}>
+      <Suspense fallback={<Section hasSpinner />}>
         <Route exact path='/login' component={LoginPage} />
         <Route exact path='/sign-up' component={RegisterPage} />
         <Route exact path='/' component={HomePage} />

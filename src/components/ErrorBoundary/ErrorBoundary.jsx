@@ -1,5 +1,5 @@
-import React, {Component} from 'react'
-import './ErrorBoundary.scss';
+import React, {Component} from 'react';
+import Section from '../Section/Section';
 
 class ErrorBoundary extends Component {
   
@@ -27,16 +27,12 @@ class ErrorBoundary extends Component {
   render() {  
     
     if(this.state.hasError){
-      return (
-        <div className='error-image-overlay'>
-          <div className='error-image-container'>
-            <h2>Sorry! Something went wrong</h2>
-            <small>{this.state.message}</small>
-          </div>
-        </div>
-      )
+      return <Section 
+        title={'Sorry! Something went wrong'} 
+        message={this.state.message} 
+        urlImage={'https://i.imgur.com/qIufhof.png'}
+      />
     }
-
     return this.props.children;
   }
 }

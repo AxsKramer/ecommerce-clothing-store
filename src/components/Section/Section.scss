@@ -1,6 +1,4 @@
-
-.error-image-overlay{
-
+.section-image-overlay{
   height: calc(100vh - 118px);
   width: 100%;
   display: flex;
@@ -8,8 +6,7 @@
   justify-content: center;
   align-items: center;
 
-  .error-image-container{
-    background-image: url('https://i.imgur.com/qIufhof.png');
+  .section-image-container{
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;

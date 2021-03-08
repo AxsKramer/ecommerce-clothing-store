@@ -25,17 +25,15 @@ const Shop = () => {
   return (
     <section className='shop'>
       {
-        collections.length ? (
-          collections.map(collection => (
-            <div key={collection.title} className="collection">
-              <h2>{collection.title.toUpperCase()}</h2>
-              <Link to={`/shop/${collection.title.toLowerCase()}`}>See only {collection.title}</Link>
-              <div className="items">
-                {collection.items.map((item, index) => <Collection key={index + item.id} item={item} />) }
-              </div>
+        collections.map(collection => (
+          <div key={collection.title} className="collection">
+            <h2>{collection.title.toUpperCase()}</h2>
+            <Link to={`/shop/${collection.title.toLowerCase()}`}>See only {collection.title}</Link>
+            <div className="items">
+              {collection.items.map((item, index) => <Collection key={index + item.id} item={item} />) }
             </div>
-          ))
-        ) : <Spinner />
+          </div>
+        ))
       }
     </section>
   )

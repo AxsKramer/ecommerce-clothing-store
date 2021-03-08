@@ -12,9 +12,11 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'js/[name].[contenthash].js',
-    publicPath: '/'
+    publicPath: '/',
+    assetModuleFilename: 'assets/[hash][ext][query]'
   },
   mode: 'production',
+  devtool: 'source-map',
   resolve: {
     extensions: ['.js', '.jsx'],
     // alias: {
@@ -55,14 +57,17 @@ module.exports = {
       {
         test: /\.(css|scss)$/,
         use: [
-          'style-loader',
+          MiniCssExtractPlugin.loader,
           'css-loader',
           'sass-loader'
         ]
       },
       {
-        test: /\.(png|jpg|mp4)$/,
-        type: "asset/resource"
+        test: /\.(png|jpg|mp4|svg)$/,
+        type: "asset/resource",
+        generator: {
+          filename: 'assets/img/[hash][ext][query]'
+        }
       }
     ]
   },
@@ -75,14 +80,14 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: 'assets/styles/[name].[contenthash].css'
     }),
-    new CopyPlugin({
-      patterns: [
-        {
-          from: path.resolve(__dirname , "src" , 'assets/img'),
-          to: "assets/images" 
-        }
-      ]
-    }),
+    // new CopyPlugin({
+    //   patterns: [
+    //     {
+    //       from: path.resolve(__dirname , "src" , 'assets/img'),
+    //       to: "assets/images" 
+    //     }
+    //   ]
+    // }),
     new Dotenv(),
     new CleanWebpackPlugin()
   ],
@@ -91,6 +96,13 @@ module.exports = {
     minimizer: [
       new CssMinimizerPlugin(),
       new TerserPlugin(),
-    ]
+    ],
+    // runtimeChunk: 'single',
+    splitChunks: {
+      cacheGroups: {
+        react: {test: /[\\/]node_modules[\\/]((react).*)[\\/]/,  name: 'react', chunks: 'all'},
+        commons: {test: /[\\/]node_modules[\\/]((?!react).*)[\\/]/, name: 'common', chunks: 'all'}
+      }
+    }
   }
 }

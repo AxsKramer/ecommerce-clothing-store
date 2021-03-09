@@ -30,7 +30,7 @@ const Header = () => {
 
   return (
     <header className="header">
-      <Link to="/" className="logo-container">
+      <Link to="/" className="logo-container" title='Logo'>
         <i className="fab fa-wolf-pack-battalion logo"></i>
       </Link>
       <nav ref={menu} className="menu">

@@ -15,11 +15,14 @@
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
+    animation: imageLogin .5s ease;
 
     @media screen and (min-width: 766px) {
       position: static;
         width: 60%;
     }
+
+    
   }
 
   .login-section{
@@ -68,4 +71,31 @@
     }
   }
 
+}
+
+@keyframes imageLogin {
+  0%{
+    opacity: 0;
+    filter: blur(0);
+  }
+  20%{
+    opacity: .2;
+    filter: blur(.8rem);
+  }
+  40%{
+    opacity: .4;
+    filter: blur(.6rem);
+  }
+  60%{
+    opacity: .6;
+    filter: blur(.4rem);
+  }
+  80%{
+    opacity: 8;
+    filter: blur(.2rem);
+  }
+  100%{
+    opacity: 1;
+    filter: blur(0);
+  }
 }

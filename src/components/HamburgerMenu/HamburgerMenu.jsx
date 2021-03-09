@@ -17,7 +17,7 @@ const HamburgerMenu = ({isClose, setClose}) => {
   }, [isClose])  
 
   return (
-    <button ref={btn} onClick={handleClick } className='hamburger-button'>
+    <button ref={btn} onClick={handleClick } className='hamburger-button' aria-label='Button menu'>
       <span className='top-line'></span>
       <span className='middle-line'></span>
       <span className='bottom-line'></span>

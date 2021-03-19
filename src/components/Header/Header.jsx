@@ -1,10 +1,8 @@
 import React, {useState, useRef, useEffect} from "react";
-import { NavLink, Link, useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "../../redux/actions/userActions";
-import CartIcon from "../CartIcon/CartIcon";
-import CartDropdown from "../CartDropdown/CartDropdown";
-import HamburgerMenu from '../HamburgerMenu/HamburgerMenu';
+import Navbar from '../Navbar/Navbar';
 import "./Header.scss";
 
 const Header = () => {
@@ -30,87 +28,10 @@ const Header = () => {
 
   return (
     <header className="header">
-      <Link to="/" className="logo-container">
+      <Link to="/" className="logo-container" title='Logo'>
         <i className="fab fa-wolf-pack-battalion logo"></i>
       </Link>
-      <nav ref={menu} className="menu">
-        {user ? (
-          <NavLink
-            to={`/user/${user.displayName}`}
-            className="menu_item"
-            activeStyle={{
-              fontWeight: "bolder",
-              color: "white",
-            }}
-            onClick={() => setClose(true)}
-          >
-            {user !== null && user.displayName}
-
-          </NavLink>
-        ) : null}
-        <NavLink
-          to="/"
-          exact
-          className="menu_item"
-          activeStyle={{
-            fontWeight: "bolder",
-            color: "white",
-          }}
-          onClick={() => setClose(true)}
-        >
-          HOME
-        </NavLink>
-        <NavLink
-          to="/categories"
-          className="menu_item"
-          activeStyle={{
-            fontWeight: "bolder",
-            color: "white",
-          }}
-          onClick={() => setClose(true)}
-        >
-          CATEGORIES
-        </NavLink>
-        <NavLink
-          to="/shop"
-          className="menu_item"
-          activeStyle={{
-            fontWeight: "bolder",
-            color: "white",
-          }}
-          onClick={() => setClose(true)}
-        >
-          SHOP
-        </NavLink>
-        {user ? (
-          <>
-            <button className="logout" onClick={logout}>
-              LOG OUT
-            </button>
-          </>
-        ) : (
-          <NavLink
-            to="/login"
-            className="menu_item"
-            activeStyle={{
-              fontWeight: "bolder",
-              color: "white",
-            }}
-            onClick={() => setClose(true)}
-          >
-            LOG IN
-          </NavLink>
-        )}
-      </nav>
-      {
-        user ? (
-          <>
-            <CartIcon />
-            {cart.hidden ? null : <CartDropdown />}
-          </>
-        ) : null
-      }
-      <HamburgerMenu isClose={isClose} setClose={setClose}/>
+      <Navbar refMenu={menu} user={user} isClose={isClose} setClose={setClose} cart={cart} logout={logout}/>
     </header>
   );
 };

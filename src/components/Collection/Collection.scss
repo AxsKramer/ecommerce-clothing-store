@@ -4,6 +4,7 @@
   max-width: 320px;
   height: 350px;
   position: relative;
+  margin-right: 2rem;
   
   .image {
     width: 100%;
@@ -25,7 +26,6 @@
   .collection-footer {
     width: 100%;
     height: 25%;
-    display: none;
     justify-content: space-between;
     font-size: 18px;
     position: absolute;
@@ -33,9 +33,11 @@
     left: 0;
     right: 0;
     z-index: 2;
+    display: flex;
     background: rgba($color: #000000, $alpha: 0.9);
-    @media screen and (max-width: 768px) {
-      display: flex;
+    
+    @media screen and (min-width: 766px) {
+      display: none;
     }
 
     .details {

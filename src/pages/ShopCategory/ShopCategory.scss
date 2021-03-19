@@ -1,11 +1,21 @@
 .shop-category{
 
-  width: 80%;
+  width: 90%;
   margin: 0 auto;
 
   .items {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
+  @media screen and (min-width: 766px) {
+    width: 100%;
+    .items{
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+    }
+  }
+  
 }

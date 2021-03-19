@@ -1,5 +1,4 @@
 import React from "react";
-import {Link} from 'react-router-dom';
 import './Networks.scss';
 
 const Networks = () => {
@@ -7,18 +6,18 @@ const Networks = () => {
     <section className="networks-section">
       <h2>Follow us</h2>
       <div className="networks">
-        <Link to="/https://www.facebook.com/" title='Facebook'>
+        <a href="/https://www.facebook.com/" title='Facebook' rel="noreferrer" rel="noopener" target='_blank'>
           <i className="fab fa-facebook"></i>
-        </Link>
-        <Link to="/https://www.pinterest.com.mx/" title='Pinterest'>
+        </a>
+        <a href="/https://www.pinterest.com.mx/" title='Pinterest' rel="noreferrer" rel="noopener" target='_blank'>
           <i className="fab fa-pinterest"></i>
-        </Link>
-        <Link to="/https://www.instagram.com/" title='Instagram'>
+        </a>
+        <a href="/https://www.instagram.com/" title='Instagram' rel="noreferrer" rel="noopener" target='_blank'>
           <i className="fab fa-instagram"></i>
-        </Link>
-        <Link to="/https://www.youtube.com/" title='Youtube'>
+        </a>
+        <a href="/https://www.youtube.com/" title='Youtube' rel="noreferrer" rel="noopener" target='_blank'>
           <i className="fab fa-youtube"></i>
-        </Link>
+        </a>
       </div>
     </section>
   );

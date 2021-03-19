@@ -1,17 +1,9 @@
 import React, {useEffect} from 'react';
-import {BrowserRouter, Switch, Route} from 'react-router-dom';
+import {BrowserRouter, Switch} from 'react-router-dom';
 import {useDispatch} from 'react-redux';
 
 import Layout from '../container/Layout';
-import LoginPage from '../pages/Login/Login';
-import RegisterPage from '../pages/Register/Register';
-import HomePage from '../pages/Home/Home';
-import ShopPage from '../pages/Shop/Shop';
-import ShopCategoryPage from '../pages/ShopCategory/ShopCategory';
-import CheckoutPage from '../pages/Checkout/Checkout';
-import CategoriesPage from '../pages/Categories/Categories';
-import UserPage from '../pages/User/User';
-import PrivateRoute from '../components/PrivateRoute/PrivateRoute';
+import Routes from '../routes/Routes';
 
 import {userConnected} from '../redux/actions/userActions';
 
@@ -48,14 +40,7 @@ const App = () => {
     <BrowserRouter>
       <Layout >
         <Switch>
-          <Route exact path='/' component={HomePage} />
-          <Route exact path='/login' component={LoginPage} />
-          <Route exact path='/sign-up' component={RegisterPage} />
-          <Route exact path='/shop' component={ShopPage} />
-          <Route exact path='/shop/:category' component={ShopCategoryPage} />
-          <Route exact path='/categories' component={CategoriesPage} />
-          <PrivateRoute item='user' exact path='/checkout' component={CheckoutPage} />
-          <PrivateRoute item='user' excat path='/user/:userName' component={UserPage} />
+          <Routes />
         </Switch>
       </Layout>
     </BrowserRouter>

@@ -1,20 +1,39 @@
 .shop {
-  width: 80%;
-  margin: 0 auto;
-  text-align: center;
-
+  width: 90%;
+  margin: 1rem auto;
   .collection{
     text-align: center;
-
+    
     a{
       color: #004e92;
       font-size: 1.5rem;
     }
   }
-
+  
   .items {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
+    overflow-x: auto;
+    justify-content: space-between;
+    &::-webkit-scrollbar{
+      width: 1rem;
+      background: rgba($color: #000000, $alpha: .1);
+    }
+    &::-webkit-scrollbar-thumb{
+      background: #004e92;
+      border-radius: 10px;
+    }
+  }
+
+  @media screen and (min-width: 766px) {
+    width: 100%;
+    .collection{
+      overflow-x: hidden;
+    }
+    .items{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      padding: 0;
+    }
   }
 }

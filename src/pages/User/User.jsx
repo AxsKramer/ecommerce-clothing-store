@@ -51,7 +51,7 @@ const User = () => {
     <section className='user-page'>
       <div className='user-details'>
         <figure className='user-image'>
-          <img src={user.photoURL ? user.photoURL : userImage } alt="user-image" title={user.displayName}/>
+          <img loading='lazy' src={user.photoURL ? user.photoURL : userImage } alt="user-image" title={user.displayName}/>
         </figure>
         <div className='user-info'>
           <h3>{user.displayName.toUpperCase()}</h3>

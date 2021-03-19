@@ -3,116 +3,80 @@
 $font-title: "Reggae One", cursive;
 .hero {
   width: 100%;
-  height: calc(50vh - 70px);
   color: white;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
   max-height: fit-content;
-
-
-  @media screen and (min-width: 600px ) and (orientation: landscape) {
+  
+  .image-container{
     width: 100%;
-    height: calc(100vh - 70px);
-    display: flex;
-  }
-
-  @media screen and (min-width: 766px) {
-    width: 100%;
-    height: calc(70vh - 70px);
-    display: flex;
-  }
-
-  &-video {
-    width: 100%;
-    height: calc(50vh - 70px);
-    position: relative;
-    object-fit: cover;
-    display: none;
-
-    @media screen and (min-width: 600px ) and (orientation: landscape) {
-      display: flex;
-      width: 50vw;
-      height: calc(100vh - 70px);
-      position: static;
-    }
-
-    @media screen and (min-width: 766px) {
-      display: flex;
-      width: 50vw;
-      height: calc(70vh - 70px);
-      position: static;
+    margin: 0;
+    height: 60vh;
+    img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      margin: 0;
     }
   }
 
   &-intro {
-    position: absolute;
-    top: 70px;
     width: 100%;
-    height: calc(50vh - 70px);
     text-align: center;
     background: rgba($color: #FFF, $alpha: 1);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    max-height: fit-content;
     color: black;
-
-    @media screen and (min-width: 600px ) and (orientation: landscape) {
-      position: static;
-      height: calc(100vh - 70px);
-      width: 50vw;
-      padding: 0;
-      justify-content: space-evenly;
-      // border-bottom: 1px solid black;
-    }
-
-    @media screen and (min-width: 766px){
-      position: static;
-      height: calc(70vh - 70px);
-      width: 50vw;
-      padding: 0;
-      justify-content: space-evenly;
-      align-items: center;
-    }
-
+    display: flex;
+    align-items: center;
+    justify-content: center;  
     
     .hero-intro-details {
-      letter-spacing: 0.2rem;
+      letter-spacing: 0.1rem;
+      width: 100%;
       display: flex;
       flex-direction: column;
       justify-content: space-evenly;
-      padding: 0 1rem;
-      height: inherit;
+      height: 100%;
       
       .logo {
-        font-size: 5rem;
+        font-size: 8rem;
+        border-radius: 50%;
+        background: black;
+        color: white;
+        padding: 1rem;
       }
       h1 {
-        font-size: 1.8rem;
+        font-size: 2.2rem;
       }
       h3 {
         font-size: 1.4rem;
       }
       span {
-        display: none;
+        font-size: 1.2rem;
+        font-weight: normal;
       }
 
       button {
-        width: 60%;
+        width: 100%;
         margin: 2rem auto 1rem auto;
         padding: 0;
       }
-
-      @media screen and (min-width: 600px ) and (orientation: landscape), screen and (min-width: 766px) {
-        padding: 0 2rem;
-        button {
-          width: 100%;
-          margin: 0;
-        }
+    }
+  }
+  @media screen and (min-width: 766px) {
+    .image-container{
+      img{
+        object-fit: contain;
       }
-      @media screen and (min-width: 766px) {
-        span {
-          display: block;
-        }
+    }
+    &-intro {
+      height: fit-content;
+      
+      .hero-intro-details {
+        width: 50%;
+      }
+      span {
+        font-weight: bold;
       }
     }
   }

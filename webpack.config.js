@@ -1,10 +1,10 @@
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CopyPlugin = require('copy-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const path = require('path');
 
 module.exports = {
@@ -12,11 +12,11 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'js/[name].[contenthash].js',
+    assetModuleFilename: 'assets/[hash][ext][query]',
     publicPath: '/',
-    assetModuleFilename: 'assets/[hash][ext][query]'
   },
   mode: 'production',
-  devtool: 'source-map',
+  devtool: false,
   resolve: {
     extensions: ['.js', '.jsx'],
     // alias: {
@@ -75,34 +75,36 @@ module.exports = {
     new HTMLWebpackPlugin({
       inject: true,
       template: path.resolve(__dirname, 'public', 'index.html'),
-      filename: './index.html'
+      filename: './index.html',
+      minify:{
+        removeComments: true,
+        collapseWhitespace: true,
+        removeAttributeQuotes: true,
+      }
     }),
     new MiniCssExtractPlugin({
       filename: 'assets/styles/[name].[contenthash].css'
     }),
-    // new CopyPlugin({
-    //   patterns: [
-    //     {
-    //       from: path.resolve(__dirname , "src" , 'assets/img'),
-    //       to: "assets/images" 
-    //     }
-    //   ]
-    // }),
     new Dotenv(),
-    new CleanWebpackPlugin()
+    new CleanWebpackPlugin(),
   ],
+  performance: {
+    hints: false
+  },
   optimization: {
     minimize: true,
     minimizer: [
       new CssMinimizerPlugin(),
       new TerserPlugin(),
     ],
-    // runtimeChunk: 'single',
     splitChunks: {
-      cacheGroups: {
-        react: {test: /[\\/]node_modules[\\/]((react).*)[\\/]/,  name: 'react', chunks: 'all'},
-        commons: {test: /[\\/]node_modules[\\/]((?!react).*)[\\/]/, name: 'common', chunks: 'all'}
-      }
+      chunks: 'all',
+      // minSize: 10000,
+      // maxSize: 240000
+      // cacheGroups: {
+      //   react: {test: /[\\/]node_modules[\\/]((react).*)[\\/]/,  name: 'react', chunks: 'all'},
+      //   commons: {test: /[\\/]node_modules[\\/]((?!react).*)[\\/]/, name: 'common', chunks: 'all'}
+      // }
     }
   }
 }

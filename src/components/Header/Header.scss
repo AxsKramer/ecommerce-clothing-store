@@ -8,7 +8,6 @@
   background: black;
   position: relative;
 
-
   .logo-container{
     height: 100%;
     width: 50%;
@@ -20,85 +19,5 @@
       line-height: 70px;
       background-color: black;
     }
-  }
-
-  .menu{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    
-    &_item{
-      padding: 1rem;
-      color: white;
-      font-size: 1.5rem;
-    }
-
-    .logout{
-      font-weight: bolder;
-      color: white;
-      background: #004e92;
-      border: none;
-      outline: none;
-      padding: .5rem;
-      border-radius: 3px;
-      transition: all .5s;
-      &:hover{
-        box-shadow: 0 1px 2px white, 0 -1px 2px white;
-        cursor: pointer;
-      }
-      &:active{
-        transform: scale(.9);
-      }
-    }
-  }
-
-  @media screen and (max-width: 600px) {
-    .menu{
-      display: flex;
-      position: absolute;
-      height: 0;
-      
-      top: -200px;
-      background: black;
-      flex-direction: column;
-      z-index: 2;
-      animation: menu-animation-close 1s ease-out;
-      
-    }
-    .menu.open{
-      display: flex;
-      position: absolute;
-      height: calc(100vh - 70px);
-      top: 70px;
-      background: black;
-      flex-direction: column;
-      animation: menu-animation-open 1s ease-in-out;
-      z-index: 12;
-    }
-  }
-
-}
-
-@keyframes menu-animation-open{
-  0%{
-    height: 0px;
-    opacity: 0;
-  }
-  100%{
-    height: calc(100vh - 70px);
-    opacity: 1;
-  }
-}
-
-@keyframes menu-animation-close{
-  0%{
-    height: calc(100vh - 70px);
-    opacity: 1;  
-  }
-  100%{
-    height: 0px;
-    opacity: 0;
   }
 }

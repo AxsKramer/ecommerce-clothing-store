@@ -1,9 +1,11 @@
 import React from "react";
 import { Helmet } from "react-helmet";
+import wolf from '../../assets/img/wolf.jpg';
 
 const MetaHelmet = () => (
   <Helmet>
     <title>Wolves Army</title>
+    <link rel="canonical" href="https://wolf-ecommerce.firebaseapp.com" />
     <meta property="og:url" content="https://wolf-ecommerce.firebaseapp.com/" />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="en_US" />
@@ -16,7 +18,7 @@ const MetaHelmet = () => (
     />
     <meta
       property="og:image"
-      content="https://i.pinimg.com/originals/fb/b8/9c/fbb89c55ee4ff86a65d53477e313ffc8.jpg"
+      content={wolf}
     />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@nytimes" />

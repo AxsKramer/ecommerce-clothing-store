@@ -20,8 +20,6 @@ const LoginPage = () => {
     if (user.user) {
       history.push('/');
     }else{
-      setState(initialState);
-      console.log('kakaka');
     }
   }, [user.user]);
 

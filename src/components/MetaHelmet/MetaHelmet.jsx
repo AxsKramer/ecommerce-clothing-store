@@ -11,15 +11,11 @@ const MetaHelmet = () => (
     <meta property="og:locale" content="en_US" />
     <meta property="og:site_name" content="Wolves Army" />
     <meta property="og:title" content="Wolves Army | Awsome Clothes" />
-    <meta property="fb:app_id" content="ID_APP_FACEBOOK" />
     <meta
       property="og:description"
       content="Wolves Army is an e-commerce web app where everybody can find the best clothes for young people, for any environment, situation and without eliminating comfort"
     />
-    <meta
-      property="og:image"
-      content={wolf}
-    />
+    <meta property="og:image" content={wolf}/>
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@nytimes" />
     <meta name="twitter:creator" content="@SarahMaslinNir" />

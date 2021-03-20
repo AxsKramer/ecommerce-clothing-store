@@ -6,13 +6,11 @@ $font-title: "Reggae One", cursive;
   color: white;
   display: flex;
   flex-direction: column;
-  height: 100vh;
-  max-height: fit-content;
   
   .image-container{
     width: 100%;
     margin: 0;
-    height: 60vh;
+    height: 50vh;
     img{
       width: 100%;
       height: 100%;
@@ -29,6 +27,7 @@ $font-title: "Reggae One", cursive;
     display: flex;
     align-items: center;
     justify-content: center;  
+    padding: 2rem 0;
     
     .hero-intro-details {
       letter-spacing: 0.1rem;

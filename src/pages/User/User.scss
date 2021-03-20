@@ -1,10 +1,9 @@
 .user-page{
   width: 100%;
-  margin: 0 auto;
   height: fit-content;
   text-align: center;
   background: whitesmoke;
-  padding: 2rem 0;
+  margin-bottom: 2rem;
 
   a{
     color: #004e92;
@@ -54,7 +53,6 @@
     max-height: 400px;
     overflow-x: hidden;
     overflow-y: auto;
-    padding: 1rem;
 
     &::-webkit-scrollbar{
       width: 1rem;

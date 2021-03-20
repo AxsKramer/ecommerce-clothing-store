@@ -16,17 +16,19 @@ const Collection = ({ item }) => {
         <>
           <div
             className="image"
+            itemprop="image"
             style={{ backgroundImage: `url(${item.imageUrl})` }}
           ></div>
-          <div className="collection-footer">
+          <div className="collection-footer" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
             <div className="details">
-              <span className="name">{item.name}</span>
-              <span className="price">$ {item.price}</span>
+              <span className="name" itemprop="description">{item.name}</span>
+              <span className="price" itemprop="priceCurrency" content="USD">$</span>
+              <span className="price" itemprop="price" content={item.price}>{item.price}</span>
             </div>
-            <div className="like-add">
+            <div className="like-add" itemprop="aggregateRating" itemscope itemtype="https://schema.org/AggregateRating">
               <button title="Like">
                 <i className="fas fa-heart"></i>
-                <span>1</span>
+                <span itemprop="reviewCount" >1</span>
               </button>
               {user ? (
                 <button

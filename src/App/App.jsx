@@ -4,6 +4,7 @@ import {useDispatch} from 'react-redux';
 
 import Layout from '../container/Layout';
 import Routes from '../routes/Routes';
+import MetaHelmet from '../components/MetaHelmet/MetaHelmet';
 
 import {userConnected} from '../redux/actions/userActions';
 
@@ -39,6 +40,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <Layout >
+        <MetaHelmet />
         <Switch>
           <Routes />
         </Switch>

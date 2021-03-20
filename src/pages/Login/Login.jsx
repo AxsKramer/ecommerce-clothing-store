@@ -18,7 +18,6 @@ const LoginPage = () => {
 
   useEffect(() => {
     if (user.user) {
-      window.location.reload();
       history.push('/');
     }
   }, [user.user]);

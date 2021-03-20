@@ -21,7 +21,7 @@ class ErrorBoundary extends Component {
   }
 
   componentDidCatch(error, info){
-    console.log(info);
+    // console.log(info);
   }
 
   render() {  
@@ -29,7 +29,6 @@ class ErrorBoundary extends Component {
     if(this.state.hasError){
       return <Section 
         title={'Sorry! Something went wrong'} 
-        message={this.state.message} 
         urlImage={'https://i.imgur.com/qIufhof.png'}
       />
     }

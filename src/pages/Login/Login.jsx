@@ -19,7 +19,6 @@ const LoginPage = () => {
   useEffect(() => {
     if (user.user) {
       history.push('/');
-    }else{
     }
   }, [user.user]);
 

@@ -15,12 +15,17 @@ const LoginPage = () => {
   const initialState = { email: "", password: "" };
   const [state, setState] = useState(initialState);
   const user = useSelector((store) => store.user);
+  const userStorage = JSON.parse(localStorage.getItem('user'));
 
   useEffect(() => {
     if (user.user) {
-      history.push('/');
+      if(user.user.uid === userStorage.uid){
+        history.push('/');
+      }
+    }else{
+      setState(initialState);
     }
-  }, [user.user]);
+  }, [userStorage]);
 
   return (
     <section className="login-container">

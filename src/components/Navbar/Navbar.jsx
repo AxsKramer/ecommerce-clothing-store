@@ -5,7 +5,8 @@ import CartDropdown from "../CartDropdown/CartDropdown";
 import HamburgerMenu from '../HamburgerMenu/HamburgerMenu';
 import './Navbar.scss';
 
-const Navbar = ({user, setClose, isClose, cart, refMenu, logout}) => {
+const Navbar = ({user, setClose, isClose, cart, refMenu, logout, displayName}) => {
+
   return (
     <>
       <nav ref={refMenu} className="menu">

@@ -64,15 +64,12 @@ export const loginNormal = (email, password) => async (dispatch) => {
 
   try {
     const response = await auth.signInWithEmailAndPassword(email, password);
-    const user = {
-      uid: response.user.uid,
-      email: response.user.email,
-      displayName: response.user.displayName,
-    }
-    const userDB = await firestore.collection('users').doc(user.email).get();
+
+    const userDB = await firestore.collection('users').doc(response.user.email).get();
 
     if(userDB.exists){
       localStorage.setItem('user', JSON.stringify(userDB.data()));
+      dispatch(loginSuccess(userDB.data()));
     }else{
       dispatch(loginFail('Wrong Email or Password'));
     }

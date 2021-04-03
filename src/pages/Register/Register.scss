@@ -1,6 +1,6 @@
 .register-container{
   height: calc(100vh - 118px);
-  overflow: hidden;
+  max-height: fit-content;
 
   .register-image{
     width: 100%;

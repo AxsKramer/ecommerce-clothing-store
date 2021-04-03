@@ -11,7 +11,7 @@ const Category = ({ category }) => {
   return (
     <div
       className={`${size} category`}
-      onClick={() => history.push(`/${linkUrl}`)}
+      onClick={() => history.push(`/${title}`)}
       ref={element}
     >
       {isIntersecting && (

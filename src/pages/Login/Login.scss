@@ -1,6 +1,7 @@
 .login-container{
   height: calc(100vh - 118px);
-  overflow: hidden;
+  max-height: fit-content;
+  // overflow: hidden;
 
   .login-image{
     width: 100%;

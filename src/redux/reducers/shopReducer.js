@@ -34,6 +34,7 @@ const shopReducer = (state = initialState, action) => {
         isLoading: false,
         messageError: action.payload
       }
+
     default:
       return state;
   }

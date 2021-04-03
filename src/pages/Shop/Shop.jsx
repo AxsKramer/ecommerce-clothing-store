@@ -27,9 +27,9 @@ const Shop = () => {
         collections.map(collection => (
           <div key={collection.title} className="collection" itemScope itemType="https://schema.org/Product" >
             <h2 itemProp="name">{collection.title.toUpperCase()}</h2>
-            <Link to={`/shop/${collection.title.toLowerCase()}`}>See only {collection.title}</Link>
+            <Link to={`/shop/${collection.title}`}>See only {collection.title}</Link>
             <div className="items">
-              {collection.items.map((item, index) => <Collection  key={index + item.id} item={item} />) }
+              {collection.items.map((item, index) => <Collection  key={index + item.id} item={item} category={collection.title} />) }
             </div>
           </div>
         ))

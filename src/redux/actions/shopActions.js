@@ -30,6 +30,29 @@ export const getCollectionsFromFirebase = () => (dispatch) => {
     .catch(error => dispatch(fetchCollectionsFailure(error.message)));
 }
 
+export const addShopItemLike = (item, category) => async (dispatch) => {
+  
+  const collectionItemsFirebase = await firestore.collection('collections').doc(category).get();
+
+  const itemsFirebase = collectionItemsFirebase.data().items.map(itm => {
+    return (itm.id === item.id) ? {...item, likes: Number(item.likes) + 1 } : itm;
+  });
+
+  const collectionUpdated = {
+    items: itemsFirebase
+  }
+
+  firestore.collection('collections').doc(category).update(collectionUpdated)
+    .then(() =>  {
+      firestore.collection('collections').get()
+        .then(snapshot => {
+          const collections = convertCollectionsSnapshotToMap(snapshot);
+          dispatch(fetchCollectionsSuccess(collections));
+        })
+        .catch(error => dispatch(fetchCollectionsFailure(error.message)));
+    })
+}
+
 export const categorySelected = (category) => ({
   type: shopTypes.SHOW_CATEGORY_SELECTED,
   payload: category

@@ -22,10 +22,8 @@ const ShopCategory = () => {
     }
   },[collections])
 
-  const collection = collections.find(collection => collection.routeName === category);
+  const collection = collections.find(collection => collection.routeName === category.toLowerCase());
 
-  console.log(collections);
-  
   return (
     <section className='shop-category'>
       <h2>{collection ? collection.title.toUpperCase() : ''}</h2>
@@ -33,7 +31,7 @@ const ShopCategory = () => {
         {
           !collection
           ? <Section hasSpinner />
-          : collection.items.map(item => <Collection key={item.id} item={item} /> )
+          : collection.items.map(item => <Collection key={item.id} item={item} category={category} /> )
         }
       </div>
     </section>

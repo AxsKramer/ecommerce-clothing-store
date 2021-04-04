@@ -1,7 +1,8 @@
 .login-container{
   height: calc(100vh - 118px);
   max-height: fit-content;
-  // overflow: hidden;
+  overflow-y: auto;
+  
 
   .login-image{
     width: 100%;
@@ -21,7 +22,8 @@
     right: 0;
     bottom: 0;
     background: rgba($color: #ffffff, $alpha: 0.7);
-    padding: 2rem 3rem 2rem 3rem;
+    padding: 2rem 3rem 1rem 3rem;
+    overflow-y: auto;
 
     .no-account{
       font-size: 1.4rem;

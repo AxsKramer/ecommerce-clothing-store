@@ -24,7 +24,7 @@ const initialState = {
       title: 'hats',
       imageUrl: 'https://images.pexels.com/photos/2613260/pexels-photo-2613260.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
       id: 4,
-      linkUrl: 'shop/hats'
+      linkUrl: 'shop/Hats'
     },
     {
       title: 'jackets',

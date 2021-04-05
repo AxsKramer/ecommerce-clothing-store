@@ -12,6 +12,7 @@ const FormLogin = ({state,setState}) => {
   const [showError, setshowError] = useState(null);
   const dispatch = useDispatch();
   const user = useSelector(store => store.user);
+  const initialState = { email: "", password: "" };
 
   useEffect(() => setshowError(user.errorMessage), [user.errorMessage]);
 
@@ -20,6 +21,7 @@ const FormLogin = ({state,setState}) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     dispatch(loginNormal(email, password));
+    setState(initialState)
   }
   const handleChange = (event) => setState({...state, [event.target.name]: event.target.value});
 

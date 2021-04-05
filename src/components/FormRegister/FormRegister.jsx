@@ -10,6 +10,13 @@ import {registerUser, registerFail, logOut} from '../../redux/actions/userAction
 
 const FormRegister = ({state, setState}) => {
 
+  const initialState = {
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  };
+
   const dispatch = useDispatch();
   const history = useHistory();
   const user = useSelector(store => store.user)
@@ -35,6 +42,7 @@ const FormRegister = ({state, setState}) => {
       return;
     }
     dispatch(registerUser(name, email, password));
+    setState(initialState);
   }
   const handleChange = (event) => setState({...state, [event.target.name]: event.target.value});
 

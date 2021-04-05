@@ -47,7 +47,7 @@ export const  registerUser = (name, email, password) => async (dispatch) => {
       dispatch(registerFail('User already exists'));
     }else{
       const {user} = await auth.createUserWithEmailAndPassword(email, password);
-      await createUserProfileDocument(user, {displayName: name});
+      await createUserProfileDocument({user: user, displayName: name});
       dispatch(registerSuccess());
       if(localStorage.getItem('user')){
         localStorage.removeItem('user');

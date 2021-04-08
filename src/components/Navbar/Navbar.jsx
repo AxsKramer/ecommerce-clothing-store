@@ -5,7 +5,7 @@ import CartDropdown from "../CartDropdown/CartDropdown";
 import HamburgerMenu from '../HamburgerMenu/HamburgerMenu';
 import './Navbar.scss';
 
-const Navbar = ({user, setClose, isClose, cart, refMenu, logout, displayName}) => {
+const Navbar = ({user, setClose, isClose, cart, refMenu, logout}) => {
 
   return (
     <>
@@ -20,7 +20,7 @@ const Navbar = ({user, setClose, isClose, cart, refMenu, logout, displayName}) =
             }}
             onClick={() => setClose(true)}
           >
-            {user !== null && user.displayName}
+            {user.displayName}
           </NavLink>
         ) : null}
         <NavLink

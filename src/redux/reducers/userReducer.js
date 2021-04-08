@@ -30,7 +30,7 @@ const userReducer = (state = initialState, action) => {
         errorMessage: action.payload,
       };
     case userTypes.USER_REGISTER_SUCCESS:
-      return {...state, ok: true  };
+      return {...state, ok: true};
     case userTypes.USER_REGISTER_FAIL:
       return {
         ...state,

@@ -2,22 +2,14 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
-import {
-  FacebookShareButton,
-  FacebookIcon,
-  TwitterIcon,
-  TwitterShareButton,
-} from "react-share";
+import { FacebookShareButton, FacebookIcon, TwitterIcon, TwitterShareButton } from "react-share";
 
 import CartItem from "../../components/CartItem/CartItem";
 import CustomButton from "../../components/CustomButton/CustomButton";
 import Spinner from "../../components/Spinner/Spinner";
 import userImage from "../../assets/img/user.png";
 
-import {
-  deleteUser,
-  changeImageProfile,
-} from "../../redux/actions/userActions";
+import { deleteUser, changeImageProfile } from "../../redux/actions/userActions";
 import { cleanCart } from "../../redux/actions/cartActions";
 
 import "./User.scss";
@@ -60,6 +52,9 @@ const User = () => {
     setChangeImage(false);
   };
 
+  const userStorage = localStorage.getItem('user');
+  const userName = user.displayName ? user.displayName : userStorage.displayName;
+
   return (
     <section className="user-page">
       <div className="user-details">
@@ -68,11 +63,11 @@ const User = () => {
             loading="lazy"
             src={user.photoURL ? user.photoURL : userImage}
             alt="user-image"
-            title={user.displayName}
+            title={userName}
           />
         </figure>
         <div className="user-info">
-          <h3>{user.displayName.toUpperCase()}</h3>
+          <h3>{userName.toUpperCase()}</h3>
           <span>{user.email}</span>
           <div className='share-buttons'>
             <FacebookShareButton url="https://wolf-ecommerce.firebaseapp.com/" title='Share'>

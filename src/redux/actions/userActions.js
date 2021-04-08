@@ -12,7 +12,7 @@ export const registerFail = (errorMessage) => ({
 }); 
 
 export const registerSuccess = () => ({
-  type: userTypes.USER_REGISTER_SUCCESS
+  type: userTypes.USER_REGISTER_SUCCESS,
 });
 
 export const loginSuccess = (user) => ({
@@ -47,11 +47,15 @@ export const  registerUser = (name, email, password) => async (dispatch) => {
       dispatch(registerFail('User already exists'));
     }else{
       const {user} = await auth.createUserWithEmailAndPassword(email, password);
-      await createUserProfileDocument({user: user, displayName: name});
-      dispatch(registerSuccess());
-      if(localStorage.getItem('user')){
-        localStorage.removeItem('user');
+      const newUser = {
+        email: user.email,
+        displayName: name,
+        uid: user.uid,
+        photoURL: user.photoURL
       }
+      await createUserProfileDocument(newUser);
+      dispatch(registerSuccess());
+      localStorage.setItem('user', JSON.stringify(newUser));
     }
   } catch (error) {
     dispatch(registerFail(error.message));    
@@ -102,7 +106,7 @@ export const loginUserByGoogle = () => async (dispatch) => {
       localStorage.setItem('user', JSON.stringify(user));
     }
   } catch (error) {
-    if(error.code === 'auth/popup-closed-by-user') return;
+    if(error.code === 'auth/popup-closed-by-user') return null;
     dispatch(loginFail(error.message));
   }
 }

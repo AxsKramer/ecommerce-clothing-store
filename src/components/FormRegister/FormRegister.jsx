@@ -6,7 +6,7 @@ import FormInput from '../FormInput/FormInput';
 import CustomButton from '../CustomButton/CustomButton';
 import Message from '../Message/Message';
 
-import {registerUser, registerFail, logOut} from '../../redux/actions/userActions';
+import {registerUser, registerFail} from '../../redux/actions/userActions';
 
 const FormRegister = ({state, setState}) => {
 
@@ -24,11 +24,10 @@ const FormRegister = ({state, setState}) => {
 
   useEffect(() => {
     if(user.ok){
-      setState({name:'', email: '', password: '', confirmPassword: ''});
-      dispatch(logOut());
-      history.push('/login');
+      setState(initialState);
+      history.push('/');
     }
-  },[user.ok] );
+  },[user] );
 
   const handleSubmit =  (event) => {
     event.preventDefault();
@@ -42,7 +41,6 @@ const FormRegister = ({state, setState}) => {
       return;
     }
     dispatch(registerUser(name, email, password));
-    setState(initialState);
   }
   const handleChange = (event) => setState({...state, [event.target.name]: event.target.value});
 
